@@ -94,6 +94,11 @@ def product_in_cart_window():
             Const('🛍️ Перейти в корзину'),
             id='cart',
         ),
+        Button(
+            Const('🔚 Выход'),
+            id='exit',
+            on_click=exit_menu
+        ),
         state=Catalog.product_in_cart,
         # getter=getters.get_preorder,
     )
