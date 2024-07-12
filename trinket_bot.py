@@ -7,7 +7,7 @@ from aiogram.types import Message, ReplyKeyboardRemove
 from aiogram_dialog import setup_dialogs
 
 from config.bot_config import bot, dp
-from handlers import catalog
+from handlers import catalog, cart
 from utils.constants import HELP_TEXT
 
 
@@ -29,7 +29,9 @@ async def help_handler(message: Message):
 async def main():
     dp.include_routers(
         catalog.router,
+        cart.router,
         catalog.dialog,
+        cart.dialog,
     )
     setup_dialogs(dp)
     await dp.start_polling(bot)

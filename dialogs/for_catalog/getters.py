@@ -1,7 +1,7 @@
 from aiogram_dialog import DialogManager
 from bson.objectid import ObjectId
 
-from config.mongo_config import products, product_categories
+from config.mongo_config import products, product_categories, carts
 
 
 async def get_product_category(dialog_manager: DialogManager, **middleware_data):
@@ -34,7 +34,6 @@ async def get_colors(dialog_manager: DialogManager, **middleware_data):
 async def get_product(dialog_manager: DialogManager, **middleware_data):
     context = dialog_manager.current_context()
     category_id = context.dialog_data['category_id']
-    # category = product_categories.find_one({'_id': ObjectId(category_id)})
     size = context.dialog_data['size']
     amount = context.dialog_data['amount']
     product = products.find_one({'category': ObjectId(category_id), 'size': size})
@@ -48,3 +47,10 @@ async def get_product(dialog_manager: DialogManager, **middleware_data):
         'price': price,
         'full_price': full_price
     }
+
+
+async def get_positions(dialog_manager: DialogManager, **middleware_data):
+    user_id = dialog_manager.event.from_user.id
+    user_cart = carts.find_one({'user_id': user_id})
+    positions = user_cart.get('positions') if user_cart is not None else []
+    return {'pos_sum': len(positions)}

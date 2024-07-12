@@ -91,8 +91,9 @@ def product_in_cart_window():
             on_click=selected.on_main_menu
         ),
         Button(
-            Const('🛍️ Перейти в корзину'),
+            Format('🛍️ Перейти в корзину ({pos_sum})'),
             id='cart',
+            on_click=selected.on_cart
         ),
         Button(
             Const('🔚 Выход'),
@@ -100,5 +101,5 @@ def product_in_cart_window():
             on_click=exit_menu
         ),
         state=Catalog.product_in_cart,
-        # getter=getters.get_preorder,
+        getter=getters.get_positions,
     )

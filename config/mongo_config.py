@@ -8,10 +8,15 @@ products = db['products']
 product_categories = db['product_categories']
 users = db['users']
 orders = db['orders']
-materials = db['materials']
+carts = db['carts']
 
 
 '''
+структура данных cart
+    '_id': дефолтный первичный ключ
+    'user_id':
+    'positions': [{product, amount, color, datetime}]
+
 структура данных products
     '_id': дефолтный первичный ключ
     'title': название товара (брелок, стенд, фурнитура)
@@ -29,6 +34,7 @@ materials = db['materials']
 структура данных orders
     '_id': дефолтный первичный ключ
     'user_id':
+    'datetime':
     'address':
     'products': []
 '''
