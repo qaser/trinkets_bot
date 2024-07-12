@@ -2,7 +2,7 @@ import datetime as dt
 from bson.objectid import ObjectId
 
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from aiogram_dialog import DialogManager
+from aiogram_dialog import DialogManager, StartMode
 
 from config.bot_config import bot
 from config.mongo_config import products, carts
@@ -61,4 +61,5 @@ async def on_product_in_cart(callback, widget, manager: DialogManager):
 
 
 async def on_cart(callback, widget, manager: DialogManager):
-    await manager.start(Cart.show_positions)
+    # await manager.done()
+    await manager.start(Cart.show_positions, mode=StartMode.RESET_STACK)

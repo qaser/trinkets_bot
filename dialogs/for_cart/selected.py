@@ -2,7 +2,7 @@ import datetime as dt
 from bson.objectid import ObjectId
 
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from aiogram_dialog import DialogManager
+from aiogram_dialog import DialogManager, StartMode
 
 from config.bot_config import bot
 from config.mongo_config import products, carts
@@ -49,4 +49,5 @@ async def delete_position(callback, widget, manager: DialogManager):
 
 
 async def on_catalog(callback, widget, manager: DialogManager):
-    await manager.start(Catalog.select_product)
+    # await manager.done()
+    await manager.start(Catalog.select_product, mode=StartMode.RESET_STACK)
