@@ -12,11 +12,7 @@ orders = db['orders']
 materials = db['materials']
 product_categories = db['product_categories']
 
-CATEGORIES = {
-    'Брелоки': [10, 30, 50, 100, 200, 300, 500, 1000],
-    'Стенды': [10, 30, 50, 100, 200, 300, 500, 1000],
-    'Фурнитура': [10, 100]
-}
+CATEGORIES = ['Брелоки', 'Стенды', 'Фурнитура']
 PRODUCTS = {
     '1': {
         'title': 'Брелок',
@@ -47,8 +43,8 @@ PRODUCTS = {
         'dimensions': [],
     },
 }
-COLORS = ['Цветной', 'Прозрачный', 'Голо', 'Свт', 'Золотой', 'Флуор']
-MATERIAL = ['Акрил']
+MATERIALS = ['Цветной', 'Прозрачный', 'Матовый', 'Голографический', 'Светящийся', 'Золотой', 'Флуоресцентный']
+COLORS = []
 
 for title, amounts in CATEGORIES.items():
     product_categories.insert_one({'title': title, 'amounts': amounts, 'colors': COLORS})
@@ -65,3 +61,31 @@ for item in PRODUCTS.values():
     )
 # for m in MATERIAL:
 #     materials.insert_one({'type': m, 'colors': COLORS})
+
+
+colors = {
+    '_id': '',
+    'title': '',
+    'code': '',
+}
+
+materials = {
+    '_id': '',
+    'title': '',
+    'color': colors
+}
+
+categories = {
+    '_id': '',
+    'title': '',
+}
+
+products = {
+    '_id': '',
+    'title': '',
+    'category': categories,  # id
+    'size': '',   # из таблицы
+    'price': '',  # из таблицы
+    'amount': '',  # из таблицы
+    'material': materials,  # id
+}

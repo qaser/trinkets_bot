@@ -3,6 +3,8 @@ from aiogram_dialog.widgets.input import TextInput
 from aiogram_dialog.widgets.kbd import (Back, Button, Cancel, CurrentPage,
                                         NextPage, PrevPage, Row, Url)
 from aiogram_dialog.widgets.text import Const, Format
+from aiogram.types import ContentType
+from aiogram_dialog.widgets.media import StaticMedia
 
 import utils.constants as texts
 from dialogs.for_catalog.states import Catalog
@@ -63,6 +65,10 @@ def product_color_window():
 
 def product_review_window():
     return Window(
+        StaticMedia(
+            path="static/img/trinket.jpg",
+            type=ContentType.PHOTO,
+        ),
         Const('<u>Ваш выбор:</u>'),
         Format('<b>Товар:</b> {product}'),
         Format('<b>Размер:</b> {size}'),
